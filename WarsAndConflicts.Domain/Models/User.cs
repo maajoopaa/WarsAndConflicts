@@ -10,20 +10,26 @@ namespace WarsAndConflicts.Domain.Models
     {
         public const int MAX_USERNAME_LENGTH = 15;
 
-        public User(Guid id, string username, string password)
+        public User(Guid id, string username, string email, string password, ICollection<Comment> comments)
         {
             Id = id;
             Username = username;
+            Email = email;
             Password = password;
+            Comments = comments;
         }
 
         public Guid Id { get; set; }
 
         public string Username { get; set; } = null!;
 
+        public string Email { get; set; } = null!;
+
         public string Password { get; set; } = null!;
 
-        public static (User User, string Error) Create(Guid id, string username, string password)
+        public ICollection<Comment> Comments { get; set; } = [];
+
+        public static (User User, string Error) Create(Guid id, string username,string email, string password, ICollection<Comment> comments)
         {
             var error = string.Empty;
 
@@ -32,7 +38,7 @@ namespace WarsAndConflicts.Domain.Models
                 error = $"Имя пользователя не может быть больше {MAX_USERNAME_LENGTH} символов!";
             }
 
-            return (new User(id, username, password), error);
+            return (new User(id, username, email, password, comments), error);
         }
     }
 }

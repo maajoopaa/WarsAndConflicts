@@ -11,12 +11,13 @@ namespace WarsAndConflicts.Domain.Models
     {
         public const int MAX_BODY_LENGTH = 250;
 
-        public Comment(Guid id, string body, DateTime createdAt, User createdBy)
+        public Comment(Guid id, string body, DateTime createdAt, User createdBy, War war)
         {
             Id = id;
             Body = body;
             CreatedAt = createdAt;
             CreatedBy = createdBy;
+            War = war;
         }
 
         Guid Id { get;set; }
@@ -27,7 +28,9 @@ namespace WarsAndConflicts.Domain.Models
 
         public User CreatedBy { get; set; } = null!;
 
-        public static (Comment Comment, string Error) Create(Guid id, string body, DateTime createdAt, User createdBy)
+        public War War { get; set; } = null!;
+
+        public static (Comment Comment, string Error) Create(Guid id, string body, DateTime createdAt, User createdBy, War war)
         {
             var error = string.Empty;
 
@@ -36,7 +39,7 @@ namespace WarsAndConflicts.Domain.Models
                 error = $"Тело комментария не может быть больше {MAX_BODY_LENGTH} символов!";
             }
 
-            return (new Comment(id, body, createdAt, createdBy), error);
+            return (new Comment(id, body, createdAt, createdBy, war), error);
         }
     }
 }
