@@ -2,10 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text;
 using System.Threading.Tasks;
 using WarsAndConflicts.DataAccess;
 using WarsAndConflicts.DataAccess.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace WarsAndConflicts.Application.Services
 {
@@ -27,7 +32,16 @@ namespace WarsAndConflicts.Application.Services
             return userEntity;
         }
 
-        public async Task<Guid> Create(string username, string email, string password)
+        public async Task<UserEntity?> Get(string username, string password)
+        {
+            var userEntity = await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+
+            return userEntity;
+        }
+
+        public async Task<UserEntity?> Create(string username, string email, string password)
         {
             try
             {
@@ -43,11 +57,33 @@ namespace WarsAndConflicts.Application.Services
 
                 await _context.SaveChangesAsync();
 
-                return userEntity.Id;
+                return userEntity;
             }
             catch
             {
-                return Guid.Empty;
+                return null;
+            }
+        }
+
+        public async Task<bool> Authorize(UserEntity user, HttpContext context)
+        {
+            try
+            {
+                var claims = new List<Claim> {
+                    new(ClaimTypes.NameIdentifier, user.Id.ToString())
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+                await context.SignInAsync(claimsPrincipal);
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

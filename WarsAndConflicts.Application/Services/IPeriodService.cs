@@ -4,10 +4,10 @@ namespace WarsAndConflicts.Application.Services
 {
     public interface IPeriodService
     {
-        Task<Guid> Create(string title, string description, byte[] image);
+        Task<PeriodEntity> Create(string title, string description, byte[] image);
         Task<PeriodEntity?> Get(Guid id);
         Task<List<PeriodEntity>> GetList();
-        Task<Guid> Remove(Guid id);
-        Task<Guid> Update(Guid id, string title, string description, byte[] image, List<WarEntity> wars);
+        Task<bool> Remove(Guid id);
+        Task<PeriodEntity?> Update(Guid id, string title, string description, byte[] image);
     }
 }

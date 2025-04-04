@@ -28,7 +28,7 @@ namespace WarsAndConflicts.Application.Services
             return commentEntities;
         }
 
-        public async Task<Guid> Create(string body, Guid userId, Guid warId)
+        public async Task<CommentEntity> Create(string body, Guid userId, Guid warId)
         {
             var commentEntity = new CommentEntity
             {
@@ -43,7 +43,7 @@ namespace WarsAndConflicts.Application.Services
 
             await _context.SaveChangesAsync();
 
-            return commentEntity.Id;
+            return commentEntity;
         }
     }
 }

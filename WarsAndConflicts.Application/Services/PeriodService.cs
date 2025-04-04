@@ -36,7 +36,7 @@ namespace WarsAndConflicts.Application.Services
             return periodEntities;
         }
 
-        public async Task<Guid> Create(string title, string description, byte[] image)
+        public async Task<PeriodEntity> Create(string title, string description, byte[] image)
         {
             var periodEntity = new PeriodEntity
             {
@@ -50,10 +50,10 @@ namespace WarsAndConflicts.Application.Services
 
             await _context.SaveChangesAsync();
 
-            return periodEntity.Id;
+            return periodEntity;
         }
 
-        public async Task<Guid> Update(Guid id, string title, string description, byte[] image, List<WarEntity> wars)
+        public async Task<PeriodEntity?> Update(Guid id, string title, string description, byte[] image)
         {
             var periodEntity = await Get(id);
 
@@ -62,7 +62,6 @@ namespace WarsAndConflicts.Application.Services
                 periodEntity.Title = title;
                 periodEntity.Description = description;
                 periodEntity.Image = image;
-                periodEntity.Wars = wars;
 
                 _context.Periods
                     .Update(periodEntity);
@@ -70,21 +69,28 @@ namespace WarsAndConflicts.Application.Services
                 await _context.SaveChangesAsync();
             }
 
-            return id;
+            return periodEntity;
         }
 
-        public async Task<Guid> Remove(Guid id)
+        public async Task<bool> Remove(Guid id)
         {
-            var periodEntity = await Get(id);
-
-            if (periodEntity != null)
+            try
             {
-                _context.Periods.Remove(periodEntity);
+                var periodEntity = await Get(id);
 
-                await _context.SaveChangesAsync();
+                if (periodEntity != null)
+                {
+                    _context.Periods.Remove(periodEntity);
+
+                    await _context.SaveChangesAsync();
+                }
+
+                return true;
             }
-
-            return id;
+            catch
+            {
+                return false;
+            }
         }
     }
 }

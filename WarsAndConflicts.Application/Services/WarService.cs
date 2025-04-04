@@ -37,7 +37,7 @@ namespace WarsAndConflicts.Application.Services
             return warEntities;
         }
 
-        public async Task<Guid> Create(string title, string description, byte[] image, Guid periodId)
+        public async Task<WarEntity> Create(string title, string description, byte[] image, Guid periodId)
         {
             var warEntity = new WarEntity
             {
@@ -52,10 +52,10 @@ namespace WarsAndConflicts.Application.Services
 
             await _context.SaveChangesAsync();
 
-            return warEntity.Id;
+            return warEntity;
         }
 
-        public async Task<Guid> Update(Guid id, string title, string description, byte[] image, Guid periodId)
+        public async Task<WarEntity?> Update(Guid id, string title, string description, byte[] image, Guid periodId)
         {
             var warEntity = await Get(id);
 
@@ -72,21 +72,38 @@ namespace WarsAndConflicts.Application.Services
                 await _context.SaveChangesAsync();
             }
 
-            return id;
+            return warEntity;
         }
 
-        public async Task<Guid> Remove(Guid id)
+        public async Task<bool> Remove(Guid id)
         {
-            var warEntity = await Get(id);
-
-            if (warEntity != null)
+            try
             {
-                _context.Wars.Remove(warEntity);
+                var warEntity = await Get(id);
 
-                await _context.SaveChangesAsync();
+                if (warEntity != null)
+                {
+                    _context.Wars.Remove(warEntity);
+
+                    await _context.SaveChangesAsync();
+                }
+
+                return true;
             }
+            catch
+            {
+                return false;
+            }
+        }
 
-            return id;
+        public async Task<List<WarEntity>> Search(string query)
+        {
+            var warEntities = await _context.Wars
+                .AsNoTracking()
+                .Where(w => w.Title.ToLower().Contains(query.ToLower()))
+                .ToListAsync();
+
+            return warEntities;
         }
     }
 }
