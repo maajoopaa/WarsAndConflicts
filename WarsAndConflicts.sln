@@ -5,6 +5,12 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarsAndConflicts", "WarsAndConflicts\WarsAndConflicts.csproj", "{D184E142-CA4F-4654-B95D-CC11A80D6057}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarsAndConflicts.DataAccess", "WarsAndConflicts.DataAccess\WarsAndConflicts.DataAccess.csproj", "{9EF5BBAF-7666-45B9-8709-FDB23D375969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarsAndConflicts.Application", "WarsAndConflicts.Application\WarsAndConflicts.Application.csproj", "{FE2BDBE6-253E-4153-BEBE-9E746CB545E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarsAndConflicts.Domain", "WarsAndConflicts.Domain\WarsAndConflicts.Domain.csproj", "{92D532CD-24DA-4DF7-90C2-3068F125BCEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D184E142-CA4F-4654-B95D-CC11A80D6057}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D184E142-CA4F-4654-B95D-CC11A80D6057}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D184E142-CA4F-4654-B95D-CC11A80D6057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EF5BBAF-7666-45B9-8709-FDB23D375969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EF5BBAF-7666-45B9-8709-FDB23D375969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EF5BBAF-7666-45B9-8709-FDB23D375969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EF5BBAF-7666-45B9-8709-FDB23D375969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2BDBE6-253E-4153-BEBE-9E746CB545E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2BDBE6-253E-4153-BEBE-9E746CB545E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2BDBE6-253E-4153-BEBE-9E746CB545E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2BDBE6-253E-4153-BEBE-9E746CB545E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D532CD-24DA-4DF7-90C2-3068F125BCEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D532CD-24DA-4DF7-90C2-3068F125BCEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D532CD-24DA-4DF7-90C2-3068F125BCEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D532CD-24DA-4DF7-90C2-3068F125BCEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
