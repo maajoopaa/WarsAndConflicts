@@ -20,7 +20,7 @@ namespace WarsAndConflicts.Domain.Models
             Comments = comments;
         }
 
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; } = null!;
 
