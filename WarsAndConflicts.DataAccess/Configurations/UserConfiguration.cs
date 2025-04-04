@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WarsAndConflicts.DataAccess.Entities;
-using WarsAndConflicts.Domain.Models;
 
 namespace WarsAndConflicts.DataAccess.Configurations
 {
@@ -25,9 +24,6 @@ namespace WarsAndConflicts.DataAccess.Configurations
             builder.HasMany(u => u.Comments)
                 .WithOne(c => c.CreatedBy)
                 .HasForeignKey(c => c.CreatedById);
-
-            builder.Property(u => u.Username)
-                .HasMaxLength(User.MAX_USERNAME_LENGTH);
         }
     }
 }

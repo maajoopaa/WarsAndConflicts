@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WarsAndConflicts.DataAccess.Entities;
-using WarsAndConflicts.Domain.Models;
 
 namespace WarsAndConflicts.DataAccess.Configurations
 {
@@ -19,9 +18,6 @@ namespace WarsAndConflicts.DataAccess.Configurations
             builder.HasMany(p => p.Wars)
                 .WithOne(w => w.Period)
                 .HasForeignKey(w => w.PeriodId);
-
-            builder.Property(p => p.Title)
-                .HasMaxLength(Period.MAX_TITLE_LENGTH);
         }
     }
 }
