@@ -8,7 +8,7 @@ namespace WarsAndConflicts.DataAccess.Entities
 {
     public class CommentEntity
     {
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Body { get; set; } = null!;
 

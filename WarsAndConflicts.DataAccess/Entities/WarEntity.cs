@@ -8,7 +8,7 @@ namespace WarsAndConflicts.DataAccess.Entities
 {
     public class WarEntity
     {
-        Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; } = null!;
 
