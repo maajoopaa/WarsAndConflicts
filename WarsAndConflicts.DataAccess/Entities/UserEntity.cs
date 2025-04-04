@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace WarsAndConflicts.DataAccess.Entities
 
         public string Password { get; set; } = null!;
 
-        public ICollection<CommentEntity> Comments { get; set; } = [];
+        public byte IsAdmin { get; set; } = 0;
+
+        public virtual ICollection<CommentEntity> Comments { get; set; } = [];
     }
 }

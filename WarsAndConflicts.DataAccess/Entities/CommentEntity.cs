@@ -16,10 +16,10 @@ namespace WarsAndConflicts.DataAccess.Entities
 
         public Guid CreatedById { get; set; }
 
-        public UserEntity CreatedBy { get; set; } = null!;
+        public virtual UserEntity CreatedBy { get; set; } = null!;
 
         public Guid WarId { get; set; }
 
-        public WarEntity War { get; set; } = null!;
+        public virtual WarEntity War { get; set; } = null!;
     }
 }

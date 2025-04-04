@@ -18,8 +18,8 @@ namespace WarsAndConflicts.DataAccess.Entities
 
         public Guid PeriodId { get; set; }
 
-        public PeriodEntity Period { get; set; } = null!;
+        public virtual PeriodEntity Period { get; set; } = null!;
 
-        public ICollection<CommentEntity> Comments { get; set; } = [];
+        public virtual ICollection<CommentEntity> Comments { get; set; } = [];
     }
 }

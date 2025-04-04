@@ -16,6 +16,6 @@ namespace WarsAndConflicts.DataAccess.Entities
 
         public byte[] Image { get; set; } = null!;
 
-        public ICollection<WarEntity> Wars { get; set; } = [];
+        public virtual ICollection<WarEntity> Wars { get; set; } = [];
     }
 }
