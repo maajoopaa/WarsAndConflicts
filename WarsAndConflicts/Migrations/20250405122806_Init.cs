@@ -32,7 +32,8 @@ namespace WarsAndConflicts.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Username = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false)
+                    Password = table.Column<string>(type: "text", nullable: false),
+                    IsAdmin = table.Column<byte>(type: "smallint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,6 +97,18 @@ namespace WarsAndConflicts.Migrations
                 name: "IX_Comments_WarId",
                 table: "Comments",
                 column: "WarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wars_PeriodId",

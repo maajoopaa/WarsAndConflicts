@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarsAndConflicts.DataAccess.Configurations;
 using WarsAndConflicts.DataAccess.Entities;
 
 namespace WarsAndConflicts.DataAccess
@@ -21,5 +22,14 @@ namespace WarsAndConflicts.DataAccess
         public DbSet<PeriodEntity> Periods { get; set; }
 
         public DbSet<WarEntity> Wars { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new WarConfiguration());
+            modelBuilder.ApplyConfiguration(new PeriodConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

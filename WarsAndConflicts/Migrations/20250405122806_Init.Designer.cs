@@ -12,8 +12,8 @@ using WarsAndConflicts.DataAccess;
 namespace WarsAndConflicts.Migrations
 {
     [DbContext(typeof(WarsDbContext))]
-    [Migration("20250404201424_UsersRole")]
-    partial class UsersRole
+    [Migration("20250405122806_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,12 @@ namespace WarsAndConflicts.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
