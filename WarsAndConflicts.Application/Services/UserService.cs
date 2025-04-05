@@ -70,10 +70,16 @@ namespace WarsAndConflicts.Application.Services
             try
             {
                 var claims = new List<Claim> {
-                    new(ClaimTypes.NameIdentifier, user.Id.ToString())
+                    new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new(ClaimTypes.Role, user.IsAdmin == 1 ? "Admin" : "User")
                 };
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var claimsIdentity = new ClaimsIdentity(
+                    claims,
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    ClaimTypes.NameIdentifier,
+                    ClaimTypes.Role
+                );
 
                 var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
