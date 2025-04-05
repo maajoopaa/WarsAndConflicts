@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WarsAndConflicts.DataAccess;
@@ -11,9 +12,11 @@ using WarsAndConflicts.DataAccess;
 namespace WarsAndConflicts.Migrations
 {
     [DbContext(typeof(WarsDbContext))]
-    partial class WarsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250404201424_UsersRole")]
+    partial class UsersRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
