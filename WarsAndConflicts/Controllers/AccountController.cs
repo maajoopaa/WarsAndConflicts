@@ -53,9 +53,9 @@ namespace WarsAndConflicts.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(string username, string password, string email)
+        public async Task<IActionResult> SignUp(string username, string email, string password)
         {
-            var user = await _userService.Create(username, password, email);
+            var user = await _userService.Create(username, email, password);
 
             if (user is not null)
             {

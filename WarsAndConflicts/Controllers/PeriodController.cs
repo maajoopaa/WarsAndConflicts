@@ -25,6 +25,12 @@ namespace WarsAndConflicts.Controllers
             return View(period);
         }
 
+        [HttpGet]
+        public ActionResult CreatePeriod()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         public async Task<ActionResult> CreatePeriod([FromBody] PeriodRequest model)
         {

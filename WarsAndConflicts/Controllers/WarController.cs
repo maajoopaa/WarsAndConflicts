@@ -10,11 +10,13 @@ namespace WarsAndConflicts.Controllers
     {
         private readonly IWarService _warService;
         private readonly IUserService _userService;
+        private readonly IPeriodService _periodService;
 
-        public WarController(IWarService warService, IUserService userService)
+        public WarController(IWarService warService, IUserService userService, IPeriodService periodService)
         {
             _warService = warService;
             _userService = userService;
+            _periodService = periodService;
         }
 
         [HttpGet]
@@ -22,7 +24,19 @@ namespace WarsAndConflicts.Controllers
         {
             var war = await _warService.Get(Guid.Parse(id));
 
+            var periods = await _periodService.GetList();
+
+            ViewData["Periods"] = periods;
+
             return View(war);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> CreateWar()
+        {
+            var periods = await _periodService.GetList();
+
+            return PartialView(periods);
         }
 
         [HttpPost]
