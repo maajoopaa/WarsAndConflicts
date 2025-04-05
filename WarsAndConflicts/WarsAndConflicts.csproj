@@ -19,4 +19,8 @@
     <ProjectReference Include="..\WarsAndConflicts.DataAccess\WarsAndConflicts.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Comment\" />
+  </ItemGroup>
+
 </Project>
